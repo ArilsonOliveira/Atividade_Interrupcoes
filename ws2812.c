@@ -23,8 +23,8 @@ int numero_atual = 0;
 uint32_t buffer_leds[MATRIZ_LEDS] = {0};
 volatile bool led_red_state = false;
 volatile bool atualizar_display = false;
-volatile uint32_t ultimo_tempo_botao_a = 0;
-volatile uint32_t ultimo_tempo_botao_b = 0;
+volatile uint32_t ultimo_botao_a = 0;
+volatile uint32_t ultimo_botao_b = 0;
 int indice_cor = 0; // definir cor atual
 
 // Convertendo RGB para GRB 
@@ -126,12 +126,12 @@ void atualizar_matriz(int numero, uint32_t cor) {
 // Função de interrupção para os botões
 void tratar_botao(uint gpio, uint32_t events) {
     uint32_t tempo_atual = to_ms_since_boot(get_absolute_time());
-    if (gpio == BOTAO_A && (tempo_atual - ultimo_tempo_botao_a > DEBOUNCE_TIME)) {
-        ultimo_tempo_botao_a = tempo_atual;
+    if (gpio == BOTAO_A && (tempo_atual - ultimo_botao_a > DEBOUNCE_TIME)) {
+        ultimo_botao_a = tempo_atual;
         numero_atual = (numero_atual + 1) % 10;
         atualizar_display = true;
-    } else if (gpio == BOTAO_B && (tempo_atual - ultimo_tempo_botao_b > DEBOUNCE_TIME)) {
-        ultimo_tempo_botao_b = tempo_atual;
+    } else if (gpio == BOTAO_B && (tempo_atual - ultimo_botao_b > DEBOUNCE_TIME)) {
+        ultimo_botao_b = tempo_atual;
         numero_atual = (numero_atual - 1 + 10) % 10;
         atualizar_display = true;
     }

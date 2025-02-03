@@ -138,7 +138,7 @@ void tratar_botao(uint gpio, uint32_t events) {
 }
 
 // Callback da interrupção do timer para piscar o LED vermelho
-bool piscar_led_vermelho(struct repeating_timer *t) {
+bool led_vermelho(struct repeating_timer *t) {
     led_red_state = !led_red_state;
     gpio_put(LED_RED_PIN, led_red_state);
     return true;
@@ -174,7 +174,7 @@ int main() {
     gpio_set_dir(LED_RED_PIN, GPIO_OUT);
 
     struct repeating_timer timer;
-    add_repeating_timer_ms(-100, piscar_led_vermelho, NULL, &timer);
+    add_repeating_timer_ms(-100, led_vermelho, NULL, &timer);
     atualizar_matriz(numero_atual, cores[indice_cor]);
 
     

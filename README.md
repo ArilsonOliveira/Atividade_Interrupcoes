@@ -4,7 +4,7 @@ Este projeto utiliza o microcontrolador RP2040 da placa BitDogLab, conectada à 
 
 ## Vídeo de Demonstração
 
-link: 
+link: <https://drive.google.com/file/d/1o381WB0-3btwcqcVjnY2B-og84pEKRZo/view?usp=sharing>
 
 ## Funcionalidades
 
